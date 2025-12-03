@@ -1,0 +1,21 @@
+const express=require("express");
+const router=express.Router();
+const{requireAuth}=require("../middleware/auth");
+const Rsvp=require("../models/rsvp");
+const Event=require("../models/event");
+const crypto=require("crypto");
+
+
+//POST /api/rsvps/:eventId (visitor)
+router.post("/:eventId",requireAuth, async(req,res)=>{
+  try{
+	const event=await Event.findById(req.params.eventId);
+	if(!event) return res.status(404).json({message:"Event not found"});
+
+	//check capacity
+	if(event.capacity && event.capacity>0){
+	  const currentCount=await Rsvp.countDocuments({event:event._id,status:"going",});
+	  if(currentCount>=event.capacity) return res.status(400).json({message:"capacity"});
+	}
+  }catch(err){}
+});
