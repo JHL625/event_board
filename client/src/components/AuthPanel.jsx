@@ -103,7 +103,7 @@ export default function AuthPanel() {
       </div>
 
       <form onSubmit={handleSubmit}>
-        {/* USERNAME FIELD */}
+        {/* username field */}
         <div style={{ marginBottom: "8px" }}>
           <input
             name="username"
@@ -115,7 +115,7 @@ export default function AuthPanel() {
           />
         </div>
 
-        {/* PASSWORD FIELD */}
+        {/* password field */}
         <div style={{ marginBottom: "8px" }}>
           <input
             type="password"
@@ -128,7 +128,7 @@ export default function AuthPanel() {
           />
         </div>
 
-        {/* ROLE ONLY FOR REGISTER */}
+        {/* only for register */}
         {mode === "register" && (
           <div style={{ marginBottom: "8px" }}>
             <label>
